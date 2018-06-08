@@ -1,18 +1,14 @@
 import os
 from decouple import config
 
+
 def root(*dirs):
     base_dir = os.path.join(os.path.dirname(__file__), '..', '..')
     return os.path.abspath(os.path.join(base_dir, *dirs))
 
-
 BASE_DIR = root()
 
 SECRET_KEY = config('SECRET_KEY')
-#SECRET_KEY = '2o+4um4xjw3_l6l817cp)u)qwddj##(9017oaxmiqig9iqba3y'
-
-DEBUG = True
-
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -21,6 +17,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'notes',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -38,7 +36,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [root('templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -52,15 +50,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'config.wsgi.application'
-
-
-'''DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}'''
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -77,6 +66,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'accounts.User'
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
@@ -84,5 +74,8 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-
 STATIC_URL = '/static/'
+STATIC_ROOT = '/static'
+STATICFILES_DIRS = [
+    root('static'),
+]
