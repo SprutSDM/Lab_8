@@ -1,2 +1,9 @@
-<h1>{{ note.title }}</h1>
-<p>{{ note.body }}</p>
+{% extends "base.html" %}
+
+{% block content %}
+
+<p><a href="{% url 'notes:update' note.id %}">{{ note.title }}</a></p>
+
+<p>{{ note.body | safe }}</p>
+
+{% endblock %}
