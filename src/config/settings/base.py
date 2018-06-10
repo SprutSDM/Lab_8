@@ -17,10 +17,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'notes',
-    'accounts',
     'widget_tweaks',
     'django_wysiwyg',
+    'notes',
+    'accounts',
 ]
 
 MIDDLEWARE = [
